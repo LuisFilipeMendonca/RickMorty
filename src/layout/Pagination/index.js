@@ -12,7 +12,10 @@ const selectStart = (currentPage, paginationQtty, lastPage) => {
     start = currentPage - 1;
   }
 
-  if (currentPage > lastPage - (paginationQtty - 1)) {
+  if (
+    currentPage > lastPage - (paginationQtty - 1) &&
+    lastPage > paginationQtty
+  ) {
     start = lastPage - (paginationQtty - 1);
   }
 
@@ -27,17 +30,20 @@ const Pagination = ({
   paginationQtty,
 }) => {
   const lastPage = Math.ceil(dataAmount / dataPerPage);
-  // let start = 1;
   let middleQtty = 3;
 
   const start = selectStart(currentPage, paginationQtty, lastPage);
   const pages = [];
 
-  if (currentPage < paginationQtty) {
+  if (currentPage < paginationQtty && lastPage > paginationQtty) {
     for (let i = 0; i < paginationQtty; i++) {
       pages.push(start + i);
     }
     pages.push(...["...", lastPage]);
+  } else if (lastPage <= paginationQtty) {
+    for (let i = 0; i < lastPage; i++) {
+      pages.push(start + i);
+    }
   } else if (
     currentPage >= paginationQtty &&
     currentPage <= lastPage - (paginationQtty - 1)
@@ -60,7 +66,9 @@ const Pagination = ({
     ) : (
       <button
         onClick={() => pageChangeHandler(page)}
-        className="pagination__item"
+        className={`pagination__item ${
+          currentPage === page ? "pagination__item--selected" : null
+        }`}
       >
         {page}
       </button>

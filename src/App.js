@@ -6,40 +6,30 @@ import "./App.css";
 import Header from "./layout/Header";
 import Pagination from "./layout/Pagination";
 
+const baseUrl = "https://rickandmortyapi.com/api/character/";
+
 const App = () => {
   const [data, setData] = useState([]);
   const [dataAmount, setDataAmount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState("");
 
-  const searchChangeHandler = async (e) => {
+  const searchChangeHandler = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const response = await axios(
-        `https://rickandmortyapi.com/api/character/?name=${e.target.value}`
-      );
-      setData(response.data.results);
-      setDataAmount(response.data.info.count);
-      setIsLoading(false);
-    } catch (e) {
-      console.log(e);
-      setIsLoading(false);
-    }
+    setQuery(`?name=${e.target.value}`);
   };
 
   const pageChangeHandler = (value) => {
     setCurrentPage(value);
+    setQuery(`?page=${value}`);
   };
 
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
       try {
-        const response = await axios(
-          "https://rickandmortyapi.com/api/character/"
-        );
+        const response = await axios(`${baseUrl}${query}`);
 
         setData(response.data.results);
         setDataAmount(response.data.info.count);
@@ -51,7 +41,9 @@ const App = () => {
     };
 
     fetchData();
-  }, []);
+  }, [query]);
+
+  console.log(dataAmount);
 
   return (
     <div className="wrapper">

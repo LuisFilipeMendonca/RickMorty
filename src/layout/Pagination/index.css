@@ -7,6 +7,13 @@
   cursor: pointer;
 }
 
+.pagination__item--selected {
+  color: #92b512;
+  background-color: transparent;
+  border: 1px solid #92b512;
+  font-weight: bold;
+}
+
 .pagination__item--empty {
   display: flex;
   align-items: center;
