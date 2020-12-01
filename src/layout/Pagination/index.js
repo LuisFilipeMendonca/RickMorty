@@ -22,6 +22,24 @@ const selectStart = (currentPage, paginationQtty, lastPage) => {
   return start;
 };
 
+const buildPaginationArr = (startPage, lastPage, qtty, ellipsisPos) => {
+  const pages = [];
+
+  if (ellipsisPos === "begin" || ellipsisPos === "both") {
+    pages.push(...[1, "..."]);
+  }
+
+  for (let i = 0; i < qtty; i++) {
+    pages.push(startPage + i);
+  }
+
+  if (ellipsisPos === "end" || ellipsisPos === "both") {
+    pages.push(...["...", lastPage]);
+  }
+
+  return pages;
+};
+
 const Pagination = ({
   dataAmount,
   currentPage,
@@ -30,37 +48,27 @@ const Pagination = ({
   paginationQtty,
 }) => {
   const lastPage = Math.ceil(dataAmount / dataPerPage);
-  let middleQtty = 3;
+  const middleQtty = 3;
 
   const start = selectStart(currentPage, paginationQtty, lastPage);
-  const pages = [];
+  let pagesArr;
+
+  buildPaginationArr(1, 34, 5, null);
 
   if (currentPage < paginationQtty && lastPage > paginationQtty) {
-    for (let i = 0; i < paginationQtty; i++) {
-      pages.push(start + i);
-    }
-    pages.push(...["...", lastPage]);
+    pagesArr = buildPaginationArr(start, lastPage, paginationQtty, "end");
   } else if (lastPage <= paginationQtty) {
-    for (let i = 0; i < lastPage; i++) {
-      pages.push(start + i);
-    }
+    pagesArr = buildPaginationArr(start, lastPage, lastPage, null);
   } else if (
     currentPage >= paginationQtty &&
     currentPage <= lastPage - (paginationQtty - 1)
   ) {
-    pages.push(...[1, "..."]);
-    for (let i = 0; i < middleQtty; i++) {
-      pages.push(start + i);
-    }
-    pages.push(...["...", lastPage]);
+    pagesArr = buildPaginationArr(start, lastPage, middleQtty, "both");
   } else {
-    pages.push(...[1, "..."]);
-    for (let i = 0; i < paginationQtty; i++) {
-      pages.push(start + i);
-    }
+    pagesArr = buildPaginationArr(start, lastPage, paginationQtty, "begin");
   }
 
-  const btns = pages.map((page) => {
+  const btns = pagesArr.map((page) => {
     return isNaN(page) ? (
       <div className="pagination__item pagination__item--empty">&#8230;</div>
     ) : (
