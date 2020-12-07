@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "./App.css";
 
 import Header from "./layout/Header";
 import Pagination from "./layout/Pagination";
-import Grid from "./layout/Grid";
+import Main from "./layout/Main";
 
 import useFetchData from "./hooks/useFetchData";
 
@@ -36,12 +36,12 @@ const App = () => {
       <Header searchChangeHandler={searchChangeHandler} />
       {isLoading && <div className="loading-container">Loading</div>}
       {error && !isLoading && <div className="loading-container">{error}</div>}
-      {data.length > 0 && !isLoading && <Grid data={data} />}
+      {data.length > 0 && !isLoading && <Main data={data} />}
       <Pagination
         dataAmount={dataAmount}
         currentPage={currentPage}
         dataPerPage={20}
-        paginationQtty={5}
+        paginationQtty={4}
         pageChangeHandler={pageChangeHandler}
       />
     </div>
