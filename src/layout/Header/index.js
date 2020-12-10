@@ -4,7 +4,12 @@ import "./index.css";
 
 import Input from "../../components/Input";
 
-const Header = ({ searchChangeHandler }) => {
+const Header = ({ makeRequest, setCharacterSearch }) => {
+  const searchChangeHandler = (e) => {
+    makeRequest(`?name=${e.target.value}&page=1`);
+    setCharacterSearch(e.target.value);
+  };
+
   return (
     <header className="header">
       <h1 className="header__title">Rick and Morty</h1>

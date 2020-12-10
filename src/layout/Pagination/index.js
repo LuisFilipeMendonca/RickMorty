@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "./index.css";
 
@@ -42,18 +42,17 @@ const buildPaginationArr = (startPage, lastPage, qtty, ellipsisPos) => {
 
 const Pagination = ({
   dataAmount,
-  currentPage,
-  pageChangeHandler,
   dataPerPage,
   paginationQtty,
+  makeRequest,
+  searchedCharacter,
 }) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const lastPage = Math.ceil(dataAmount / dataPerPage);
   const middleQtty = 3;
 
   const start = selectStart(currentPage, paginationQtty, lastPage);
   let pagesArr;
-
-  buildPaginationArr(1, 34, 5, null);
 
   if (currentPage < paginationQtty && lastPage > paginationQtty) {
     pagesArr = buildPaginationArr(start, lastPage, paginationQtty, "end");
@@ -67,6 +66,19 @@ const Pagination = ({
   } else {
     pagesArr = buildPaginationArr(start, lastPage, paginationQtty, "begin");
   }
+
+  const pageChangeHandler = (value) => {
+    const query =
+      searchedCharacter.length > 0
+        ? `?name=${searchedCharacter}&page=${value}`
+        : `?page=${value}`;
+    setCurrentPage(value);
+    makeRequest(query);
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchedCharacter]);
 
   const btns = pagesArr.map((page) => {
     return isNaN(page) ? (
