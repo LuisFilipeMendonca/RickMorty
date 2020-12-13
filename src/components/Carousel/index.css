@@ -1,6 +1,8 @@
 .carousel {
   position: relative;
   max-width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .carousel__outter {
@@ -10,11 +12,29 @@
 .carousel__inner {
   display: flex;
   align-items: center;
-  transition: transform 0.2s linear;
+  transition: transform 0.3s linear;
+}
+
+.carousel__item {
+  min-width: 25%;
+  transition: min-width 0.3s linear;
+}
+
+.carousel__item--selected {
+  min-width: 60%;
 }
 
 @media screen and (min-width: 576px) {
   .carousel__inner {
     transition: transform 0.5s linear;
+  }
+
+  .carousel__item {
+    min-width: 20%;
+    transition: min-width 0.5s ease;
+  }
+
+  .carousel__item--selected {
+    min-width: 40%;
   }
 }

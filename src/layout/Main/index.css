@@ -7,18 +7,18 @@
 }
 
 .btn__carousel {
-  position: absolute;
-  bottom: -50px;
+  position: fixed;
+  bottom: 100px;
 }
 
 .btn__carousel--prev {
-  transform: translateX(-120%);
-  left: 50%;
+  /* transform: translateX(-120%); */
+  left: 30%;
 }
 
 .btn__carousel--next {
-  transform: translateX(120%);
-  right: 50%;
+  /* transform: translateX(120%); */
+  right: 30%;
 }
 
 /* @media screen and (min-width: 576px) {

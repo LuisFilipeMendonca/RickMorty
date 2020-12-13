@@ -2,6 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 
 import "./index.css";
 
+const defineStyleClass = (windowLength, currentItem, index) => {
+  return windowLength > 576
+    ? index >= currentItem && index <= currentItem + 1
+      ? "carousel__item carousel__item--selected"
+      : "carousel__item"
+    : index === currentItem
+    ? "carousel__item carousel__item--selected"
+    : "carousel__item";
+};
+
 const Carousel = ({ item, dataArr }) => {
   const [currentItem, setCurrentItem] = useState(0);
   const [windowLength, setWindowLength] = useState(window.innerWidth);
@@ -66,9 +76,7 @@ const Carousel = ({ item, dataArr }) => {
           <div className="carousel__item"></div>
           {dataArr.map((data, index) =>
             React.cloneElement(item, {
-              windowLength: windowLength,
-              currentItem: currentItem,
-              index: index,
+              style: defineStyleClass(windowLength, currentItem, index),
               data: data,
               key: data.id,
             })

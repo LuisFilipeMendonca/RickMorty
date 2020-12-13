@@ -1,0 +1,22 @@
+.character {
+  padding: 16px;
+}
+
+.character__img {
+  width: 100%;
+  display: block;
+}
+
+.character__txt {
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.carousel__item--selected .character__txt {
+  opacity: 1;
+  visibility: visible;
+}
