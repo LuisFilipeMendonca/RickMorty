@@ -10,7 +10,6 @@ import useRequest from "./hooks/useRequest";
 
 const App = () => {
   const [characterSearch, setCharacterSearch] = useState("");
-  const [query, setQuery] = useState("");
 
   const [data, isLoading, error, requestHandler] = useRequest();
 
@@ -21,8 +20,6 @@ const App = () => {
   useEffect(() => {
     makeRequest("");
   }, []);
-
-  console.log(characterSearch);
 
   return (
     <div className="wrapper">

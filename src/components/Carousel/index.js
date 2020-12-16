@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 import "./index.css";
 
+import Button from "../Button";
+
 const defineStyleClass = (windowLength, currentItem, index) => {
   return windowLength > 576
     ? index >= currentItem && index <= currentItem + 1
@@ -49,24 +51,6 @@ const Carousel = ({ item, dataArr }) => {
 
   return (
     <div className="carousel">
-      <button
-        className="btn__carousel btn__carousel--prev"
-        onClick={() => moveHandler(-1)}
-        disabled={currentItem === 0}
-      >
-        Prev
-      </button>
-      <button
-        className="btn__carousel btn__carousel--next"
-        onClick={() => moveHandler(1)}
-        disabled={
-          windowLength > 576
-            ? currentItem >= dataArr.length - 2
-            : currentItem === dataArr.length - 1
-        }
-      >
-        Next
-      </button>
       <div className="carousel__outter">
         <div
           className="carousel__inner"
@@ -82,6 +66,28 @@ const Carousel = ({ item, dataArr }) => {
             })
           )}
         </div>
+      </div>
+      <div className="carousel__btns">
+        <Button
+          className="btn__carousel btn__carousel--prev"
+          onClick={() => moveHandler(-1)}
+          disabled={currentItem === 0}
+        >
+          <span>&#8592;</span>
+          Prev
+        </Button>
+        <Button
+          className="btn__carousel btn__carousel--next"
+          onClick={() => moveHandler(1)}
+          disabled={
+            windowLength > 576
+              ? currentItem >= dataArr.length - 2
+              : currentItem === dataArr.length - 1
+          }
+        >
+          Next
+          <span>&#8594;</span>
+        </Button>
       </div>
     </div>
   );

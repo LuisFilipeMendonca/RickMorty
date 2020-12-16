@@ -1,5 +1,5 @@
 .character {
-  padding: 16px;
+  padding: 8px;
 }
 
 .character__img {
@@ -19,4 +19,10 @@
 .carousel__item--selected .character__txt {
   opacity: 1;
   visibility: visible;
+}
+
+@media screen and (min-width: 576px) {
+  .character {
+    padding: 16px;
+  }
 }

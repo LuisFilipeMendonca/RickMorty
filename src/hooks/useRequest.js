@@ -10,6 +10,7 @@ const useRequest = () => {
 
   const requestHandler = async (query, requestConfig) => {
     setIsLoading(true);
+    setError(null);
     try {
       const response = await axios(`${baseUrl}${query}`);
 
@@ -17,7 +18,6 @@ const useRequest = () => {
     } catch (e) {
       setData(null);
       setError("There is no data to show.");
-      console.log(e);
     }
 
     setIsLoading(false);

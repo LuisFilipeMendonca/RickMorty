@@ -5,36 +5,3 @@
   display: flex;
   justify-content: center;
 }
-
-.btn__carousel {
-  position: fixed;
-  bottom: 100px;
-}
-
-.btn__carousel--prev {
-  /* transform: translateX(-120%); */
-  left: 30%;
-}
-
-.btn__carousel--next {
-  /* transform: translateX(120%); */
-  right: 30%;
-}
-
-/* @media screen and (min-width: 576px) {
-  .btn__carousel {
-    position: absolute;
-    top: 50%;
-    bottom: unset;
-  }
-
-  .btn__carousel--prev {
-    left: 0;
-    transform: translate(-120%, -50%);
-  }
-
-  .btn__carousel--next {
-    right: 0;
-    transform: translate(120%, -50%);
-  }
-} */

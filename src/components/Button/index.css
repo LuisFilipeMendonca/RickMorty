@@ -1,0 +1,50 @@
+.btn {
+  cursor: pointer;
+  background-color: #92b512;
+  color: #062625;
+  border: 1px solid #062625;
+  transition: all 0.2s linear;
+}
+
+/* CAROUSEL BTNS */
+.btn__carousel {
+  padding: 6px 16px;
+}
+
+.btn__carousel:disabled {
+  background: #ccc;
+}
+
+.btn__carousel:nth-child(1) span {
+  margin-right: 8px;
+}
+
+.btn__carousel:nth-child(2) span {
+  margin-left: 8px;
+}
+
+/* PAGINATION BTNS */
+.pagination__item {
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+
+.pagination__item--selected {
+  color: #92b512;
+  background-color: transparent;
+  border: 1px solid #92b512;
+  font-weight: bold;
+}
+
+/* COMMON HOVER EFFECT AND FOCUS */
+.pagination__item:hover,
+.btn__carousel:hover:not(:disabled) {
+  background-color: #062625;
+  color: #92b512;
+}
+
+.pagination__item:focus,
+.btn__carousel:focus:not(:disabled) {
+  outline: 1px solid lightseagreen;
+}

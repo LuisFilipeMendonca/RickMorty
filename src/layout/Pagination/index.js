@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import "./index.css";
 
+import Button from "../../components/Button";
+
 const selectStart = (currentPage, paginationQtty, lastPage) => {
   let start = 1;
 
@@ -82,16 +84,16 @@ const Pagination = ({
 
   const btns = pagesArr.map((page) => {
     return isNaN(page) ? (
-      <div className="pagination__item pagination__item--empty">&#8230;</div>
+      <div className="pagination__item--empty">&#8230;</div>
     ) : (
-      <button
+      <Button
         onClick={() => pageChangeHandler(page)}
         className={`pagination__item ${
           currentPage === page ? "pagination__item--selected" : null
         }`}
       >
         {page}
-      </button>
+      </Button>
     );
   });
 

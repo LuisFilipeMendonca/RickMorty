@@ -1,20 +1,6 @@
-.pagination__item {
-  background-color: #92b512;
-  color: #062625;
-  border: none;
+.pagination__item--empty {
   width: 30px;
   height: 30px;
-  cursor: pointer;
-}
-
-.pagination__item--selected {
-  color: #92b512;
-  background-color: transparent;
-  border: 1px solid #92b512;
-  font-weight: bold;
-}
-
-.pagination__item--empty {
   display: flex;
   align-items: center;
   justify-content: center;
