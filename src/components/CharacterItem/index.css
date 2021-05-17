@@ -19,6 +19,8 @@
 .carousel__item--selected .character__txt {
   opacity: 1;
   visibility: visible;
+  border: 1px solid #ccc;
+  padding: 8px;
 }
 
 @media screen and (min-width: 576px) {
